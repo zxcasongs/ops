@@ -45,9 +45,16 @@ class UserLogin(APIView):
 
 
 
+import  logging
 
-class Getuser(APIView):
+class SendCodeView(APIView):
     authentication_classes = [MyAuthentication]
-    permission_classes = [MyPermission]
+    #permission_classes = [MyPermission]
+
     def get(self,request,*args,**kwargs):
-        return Response("123")
+        user = request.user
+        print(123)
+        #logging.info(user)
+
+        email = User.objects.filter(username=user)
+        return  APIResponse({"ok":123})
